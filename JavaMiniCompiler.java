@@ -1,12 +1,12 @@
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.io.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.ArrayList;
+import javax.swing.*;
 import javax.swing.undo.UndoManager;
 
 public class JavaMiniCompiler {
