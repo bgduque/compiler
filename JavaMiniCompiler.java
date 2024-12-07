@@ -89,8 +89,8 @@ class HomePage extends JFrame {
 
 class MainPage extends JFrame {
     private JTextArea codeTextArea;
-    private JTextArea resultTextArea;
-    private JButton lexicalAnalysisButton, syntaxAnalysisButton, semanticAnalysisButton, runButton; // Add Run button
+    private final JTextArea resultTextArea;
+    private final JButton lexicalAnalysisButton, syntaxAnalysisButton, semanticAnalysisButton, runButton; // Add Run button
     private UndoManager undoManager = new UndoManager(); // Add UndoManager
 
     public MainPage() {
@@ -234,7 +234,7 @@ class MainPage extends JFrame {
         // Header Label
         JLabel headerLabel = new JLabel("Mini Java Compiler", JLabel.CENTER);
         headerLabel.setFont(new Font("Open Sans", Font.BOLD, 28));
-        headerLabel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+        headerLabel.setBorder(BorderFactory.createEmptyBorder(20,  20, 20, 20));
         add(headerLabel, BorderLayout.NORTH);
 
         // Code Text Area with Buttons
@@ -317,6 +317,7 @@ class MainPage extends JFrame {
         resultTextArea = new JTextArea();
         resultTextArea.setFont(new Font("Open Sans", Font.PLAIN, 16));
         resultTextArea.setEditable(false);
+        resultTextArea.setEnabled(false);
         JScrollPane resultScrollPane = new JScrollPane(resultTextArea);
         resultScrollPane.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), "Analysis Results"));
 
@@ -556,7 +557,9 @@ class MainPage extends JFrame {
         }
 
         if(error) {
-            resultTextArea.append("Error: Unknown token(s) detected." + "\nLexical Analysis Failed.");
+            resultTextArea.append("""
+                                  Error: Unknown token(s) detected.
+                                  Lexical Analysis Failed.""");
             lexicalAnalysisButton.setEnabled(false); // Reset button states
             syntaxAnalysisButton.setEnabled(false);
         } else {
@@ -596,7 +599,9 @@ class MainPage extends JFrame {
         }
         
         if(error) {
-            resultTextArea.append("Syntax error(s) detected." + "\nSyntax Analysis Failed.");
+            resultTextArea.append("""
+                                  Syntax error(s) detected.
+                                  Syntax Analysis Failed.""");
             semanticAnalysisButton.setEnabled(false);
         } else {
             // Indicate successful syntax analysis
